@@ -3,10 +3,12 @@ import * as S from "./styled";
 import { useCallback, useState } from 'react';
 import CryptoJS from 'crypto-js';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigator = useNavigate();
 
     const handlePost = useCallback(async () => {
         const json = {
@@ -19,9 +21,12 @@ export default function LoginPage() {
         const res = await axios.post('http://localhost:8080/api/auth/login', {
             json: encryptedJson,
         });
-
-        sessionStorage.setItem("token", res.data.token);
-        console.log(res);
+    
+        if(res.data.token)
+        {
+            sessionStorage.setItem("token", res.data.token);
+            navigator("/");
+        }    
     }, [email, password]);
 
     return (
