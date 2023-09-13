@@ -1,5 +1,6 @@
 import { Col, Row } from 'react-bootstrap';
 import * as S from "./styled";
+import React  from 'react';
 
 export default function feedPage() {
     return (

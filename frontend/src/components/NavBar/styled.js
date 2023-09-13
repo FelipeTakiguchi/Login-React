@@ -10,12 +10,19 @@ export const NavLink = styled(Link)`
 
 export const NavContent = styled(Nav)`
     display: flex;
+    align-items: center;
     gap: 1rem;
 `;
 
 export const NavCollapse = styled(Navbar.Collapse)`
     display: flex;
     justify-content: flex-end;
+`;
+
+export const IconOption = styled.div`
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 `;
 
 export const Header = styled(Navbar)`

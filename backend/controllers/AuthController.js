@@ -49,11 +49,10 @@ class AuthController{
 
         try {
             const user = await User.findOne({ email })
-            console.log(password);
+            console.log(user);
             if(!user)
                 return res.status(400).send({ message: "Invalid Email or password" })
             if(!await bcrypt.compare(password, user.password)){
-                console.log("tcharam");
                 return res.status(400).send({ message: "Invalid Email or password" })
             }
             const secret = process.env.SECRET;

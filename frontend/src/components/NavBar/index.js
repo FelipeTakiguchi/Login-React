@@ -1,16 +1,21 @@
 import { Container, Navbar } from "react-bootstrap";
-import { Outlet } from "react-router-dom";
-import { BoschBand, Header, Logo, NavCollapse, NavContent, NavLink } from "./styled";
+import { Outlet, useNavigate } from "react-router-dom";
+import { BoschBand, Header, IconOption, Logo, NavCollapse, NavContent, NavLink } from "./styled";
 import { useEffect, useState } from "react";
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+
 
 export default function NavBar() {
     const [token, setToken] = useState("");
+    const navigator = useNavigate();
 
     useEffect(() => {
         setToken(sessionStorage.getItem("token"));
-    }, []);
+    }, [sessionStorage.getItem("token")]);
 
-    function logOff() {
+    const logOff = () => {
         sessionStorage.removeItem("token");
     }
 
@@ -39,9 +44,18 @@ export default function NavBar() {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <NavCollapse id="basic-navbar-nav">
                             <NavContent>
-                                <NavLink to="/">Home</NavLink>
-                                <NavLink to="/add">Adicionar</NavLink>
-                                <NavLink to="/exit" onClick={logOff} to="/">Exit</NavLink>
+                                <IconOption>
+                                    <FontAwesomeIcon icon={icon({ name: 'home' })} />
+                                    <NavLink to="/">Home</NavLink>
+                                </IconOption>
+                                <IconOption>
+                                    <FontAwesomeIcon icon={icon({ name: 'add' })} />
+                                    <NavLink to="/createPost">Adicionar</NavLink>
+                                </IconOption>
+                                <IconOption>
+                                    <FontAwesomeIcon icon={icon({ name: 'right-from-bracket' })} />
+                                    <NavLink onClick={logOff} to="/login">Exit</NavLink>
+                                </IconOption>
                             </NavContent>
                         </NavCollapse>
                     </Container>
@@ -72,15 +86,6 @@ export default function NavBar() {
                             />
                         </svg>
                     </a>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <NavCollapse id="basic-navbar-nav">
-                        <NavContent>
-                            <NavLink to="/">Home</NavLink>
-                            <NavLink to="/login">Login</NavLink>
-                            <NavLink to="/register">Register</NavLink>
-                            <NavLink to="/feed">Feed</NavLink>
-                        </NavContent>
-                    </NavCollapse>
                 </Container>
             </Header>
             <Outlet />

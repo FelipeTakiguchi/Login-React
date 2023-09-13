@@ -7,6 +7,9 @@ import RegisterPage from './pages/registerPage';
 import FeedPage from './pages/feedPage';
 import AccessDenied from './pages/accesDeniedPage';
 import ProtectedRoute from './ProtectedRoute';
+import React  from 'react';
+import UnknownPage from './pages/UnknowPage';
+import CreatePost from './pages/CreatePost';
 
 function App() {
   return (
@@ -26,6 +29,8 @@ function App() {
             errorPage={<AccessDenied />}
             targetPage={<FeedPage />}
           />} />
+        <Route path='/createPost' element={<CreatePost />} />
+        <Route path='/*' element={<UnknownPage/>}/>
       </Routes>
     </>
   );

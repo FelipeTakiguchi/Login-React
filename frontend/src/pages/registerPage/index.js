@@ -3,6 +3,7 @@ import * as S from "./styled";
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
+import React  from 'react';
 
 export default function RegisterPage() {
     const [email, setEmail] = useState('');
@@ -35,7 +36,11 @@ export default function RegisterPage() {
                         <S.InputText type="text" placeholder='Name' onChange={(e) => setName(e.target.value)}></S.InputText>
                         <S.InputText type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)}></S.InputText>
                         {/* <S.InputText type="text" placeholder='ConfirmPassword' onChange={(e) => setConfirmPassword(e.target.value)}></S.InputText> */}
-                        <S.SubmitButton onClick={handlePost}>Submit</S.SubmitButton>
+                        <div>
+                            <span>Already have an account? </span>
+                            <a href='/login'>LogIn</a>
+                        </div>
+                        <S.SubmitButton onClick={handlePost} to="/login">Submit</S.SubmitButton>
                     </S.SpacedForm>
                 </Container>
             </section>
