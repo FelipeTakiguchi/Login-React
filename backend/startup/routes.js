@@ -1,9 +1,9 @@
 const express = require('express');
-const person = require('../routes/person');
+const post = require('../routes/post');
 const auth = require('../routes/auth')
 
 module.exports = function(app) {
     app.use(express.json());
-    app.use('/api/person', person);
+    app.use('/api/post', post);
     app.use('/api/auth', auth);
 }
