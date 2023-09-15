@@ -1,16 +1,41 @@
-import { Col, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import * as S from "./styled";
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Post from '../../components/Post';
+import { PostsContext } from '../../context/PostsContext';
 
 export default function HomePage() {
-    const [jwt, setJwt] = useState('');
+    const [posts, setPosts] = useState([]);
+    const { listPosts } = useContext(PostsContext);
+
+    async function randomGet(){
+        const res = await listPosts();
+
+        setPosts(res);
+    }
+
+    useEffect(() => {
+        randomGet();
+    }, []);
+
+    useEffect(() => {
+        console.log(posts);
+    }, [posts]);
+
 
     return (
         <>
             <S.Content>
-                <Post/>
+                {
+                    posts.length > 0 && posts.map(post => {
+                        return (
+                            <Col>
+                                <Post />
+                            </Col>
+                        )
+                    })
+                }
             </S.Content>
         </>
-    )    
+    )
 }

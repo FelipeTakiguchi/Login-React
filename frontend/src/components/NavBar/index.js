@@ -1,6 +1,6 @@
 import { Container, Navbar } from "react-bootstrap";
-import { Outlet, useNavigate } from "react-router-dom";
-import { BoschBand, Header, IconOption, Logo, NavCollapse, NavContent, NavLink } from "./styled";
+import { Outlet } from "react-router-dom";
+import {  Header, IconOption, Logo, NavCollapse, NavContent, NavLink } from "./styled";
 import { useEffect, useState } from "react";
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -9,7 +9,6 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 export default function NavBar() {
     const [token, setToken] = useState("");
-    const navigator = useNavigate();
 
     useEffect(() => {
         setToken(sessionStorage.getItem("token"));
@@ -24,7 +23,7 @@ export default function NavBar() {
             <>
                 <Header expand="lg">
                     <Container>
-                        <a href="/" class="o-header__logo" aria-label="Bosch Logo">
+                        <a href="/" className="o-header__logo" aria-label="Bosch Logo">
                             <svg
                                 width="108px"
                                 height="24px"
@@ -69,7 +68,7 @@ export default function NavBar() {
         <>
             <Header expand="lg">
                 <Container>
-                    <a href="/" class="o-header__logo" aria-label="Bosch Logo">
+                    <a href="/" className="o-header__logo" aria-label="Bosch Logo">
                         <svg
                             width="108px"
                             height="24px"

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const SpacedForm = styled(Form)`
     gap: .7rem;
-    min-width: 32rem;
+    min-width: 30%;
     max-width: 34rem;
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@ export const InputText = styled(FormControl)`
 `;
 
 export const TextArea = styled.textarea`
-    min-width: 30rem;
+    width: 100%;
     padding: 1rem;
     border-radius: .3rem;
 `;

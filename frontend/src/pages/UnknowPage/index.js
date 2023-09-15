@@ -7,14 +7,17 @@ export default function UnknownPage() {
 
     useEffect(() => {
       setTimeout(() => {
-        navigating('/')
+        if(sessionStorage.getItem("token"))
+          navigating('/')
+        else
+          navigating('/login')
       }, 2000)
     }, []);
 
     return(
         <S.Center>
             <h1>Unknown Page</h1>
-            <h2>Redirecting to home...</h2>
+            <h2>You are being redirected...</h2>
         </S.Center>
     )
 }

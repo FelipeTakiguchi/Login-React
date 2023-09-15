@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 
 export const Center = styled(Container)`

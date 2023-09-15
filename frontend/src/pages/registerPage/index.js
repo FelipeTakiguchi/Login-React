@@ -1,6 +1,6 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import * as S from "./styled";
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import React  from 'react';
@@ -40,7 +40,7 @@ export default function RegisterPage() {
                             <span>Already have an account? </span>
                             <a href='/login'>LogIn</a>
                         </div>
-                        <S.SubmitButton onClick={handlePost} to="/login">Submit</S.SubmitButton>
+                        <S.SubmitButton onClick={handlePost} to="/login">Create</S.SubmitButton>
                     </S.SpacedForm>
                 </Container>
             </section>
