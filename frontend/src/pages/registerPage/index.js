@@ -4,11 +4,13 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 import CryptoJS from 'crypto-js';
 import React  from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
+    const navigator = useNavigate();
 
     const handlePost = useCallback(async () => {
         const json = {
@@ -23,7 +25,10 @@ export default function RegisterPage() {
             json: encryptedJson,
         });
         
-        console.log(res);
+        if(res.data)
+        {
+            navigator("/login");
+        }
     }, [email, name, password]);
 
     return (

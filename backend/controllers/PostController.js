@@ -2,15 +2,16 @@ const Post = require('../models/Post');
 
 class PostController{
     static async create(req, res){
-        const { title, content, userId } = req.body.post;
+        const { title, content, owner } = req.body.post;
 
-        if(!title || !content || !userId)
+        if(!title || !content || !owner)
             return res.status(400).send({ message: "Dados inválidos" })
         
         const post = {
             title: title,
             content: content,
-            userId: userId
+            owner: owner,
+            likes: 0
         }
         
         const p = await Post.create(post);

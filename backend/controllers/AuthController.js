@@ -72,6 +72,19 @@ class AuthController{
             return res.status(500).send({ message: "Something failed" })
         }
     } 
+
+    static async getUserById(req, res){
+        const { id } = req.params;
+        
+        try {
+            const user = await User.findById(id);
+            if(!user) 
+                return res.status(404).send({ message: "user not found " })
+            return res.status(200).json(user);   
+        } catch (error) {
+            return res.status(500).json({ error: error })
+        }
+    }
 }
 
 module.exports = AuthController;

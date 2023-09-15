@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap';
 import * as S from "./styled";
 import { useCallback, useState } from 'react';
 import CryptoJS from 'crypto-js';
@@ -34,18 +33,18 @@ export default function LoginPage() {
     return (
         <>
             <section>
-                <Container>
+                <S.Container>
                     <S.SpacedForm>
                         <h2>LOG IN</h2>
                         <S.InputText type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}></S.InputText>
                         <S.InputText type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)}></S.InputText>
-                        <div>
+                        <S.FontSize>
                             <span>Don't have an account? </span>
                             <a href='/register'>Create here</a>
-                        </div>
+                        </S.FontSize>
                         <S.SubmitButton onClick={handlePost}>Enter</S.SubmitButton>
                     </S.SpacedForm>
-                </Container>
+                </S.Container>
             </section>
         </>
     )

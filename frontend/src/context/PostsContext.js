@@ -13,21 +13,41 @@ export const PostProvider = ({ children }) => {
 
     async function createPost(title, content){
         const token = jwtdecode(sessionStorage.getItem("token"));
+        const res1 = await axios.get('http://127.0.0.1:8080/api/auth/'+token.id);
+        console.log(res1)
 
         const post = {
             title: title,
             content: content,
-            userId: token.id,
+            owner: res1.data.name,
         };
+        console.log(post)
  
-        const res = await axios.post('http://127.0.0.1:8080/api/post/', {
+        const res2 = await axios.post('http://127.0.0.1:8080/api/post/', {
             post
         });
     
-        console.log(res.data);
-        if(res.data.token)
+        if(res2.data)
         {
-            sessionStorage.setItem("token", res.data.token);
+            navigator("/");
+        }
+    }
+
+    async function createOrUpdateLike(postId, value){
+        const token = jwtdecode(sessionStorage.getItem("token"));
+ 
+        const like = {
+            value: value,
+            userId: token.id,
+            postId: postId
+        }
+
+        const res2 = await axios.post('http://127.0.0.1:8080/api/like/', {
+            like
+        });
+    
+        if(res2.data)
+        {
             navigator("/");
         }
     }
@@ -43,7 +63,8 @@ export const PostProvider = ({ children }) => {
                 title, content,
                 setTitle, setContent,
                 createPost,
-                listPosts
+                listPosts,
+                createOrUpdateLike
             }}
         >
             {children}

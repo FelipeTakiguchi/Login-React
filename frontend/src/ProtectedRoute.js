@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import jwt_decode from 'jwt-decode';
+//eslint-disable-next-line
 import React  from 'react';
 
 export default function ProtectedRoute({ errorPage, targetPage, func }) {

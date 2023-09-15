@@ -6,6 +6,7 @@ export const Card = styled.div`
     min-height: 10rem;
     background-color: aliceblue;
     padding: 1.5rem;
+    box-sizing: border-box;
     border-radius: 1rem;
     animation: fadeInAnimation ease .4s;
     animation-iteration-count: 1;
@@ -46,4 +47,9 @@ export const Description = styled.p`
 
 export const Logo = styled.path`
     fill: #ea0016;
+`;
+
+export const Separator = styled.div`
+    display: flex;
+    justify-content: space-between;
 `;

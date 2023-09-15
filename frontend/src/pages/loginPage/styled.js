@@ -3,18 +3,29 @@ import styled from 'styled-components';
 
 export const SpacedForm = styled(Form)`
     gap: .7rem;
-    min-width: 32rem;
-    max-width: 34rem;
+    min-width: 30%;
+    max-width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: .6rem 2rem;
-    margin: 10% 28% 0%;
+`;
+
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const InputText = styled(FormControl)`
-    max-width: 30rem;
+    max-width: 100%;
+`;
+
+export const FontSize = styled.div`
+    font-size: .7rem;
+    text-align: center;
 `;
 
 export const SubmitButton = styled(Button)`
