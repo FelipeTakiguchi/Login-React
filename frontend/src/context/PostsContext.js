@@ -4,7 +4,7 @@ import jwtdecode from 'jwt-decode';
 import axios from 'axios';
 
 export const PostsContext = React.createContext();
-PostsContext.displayName = 'Pagamentos';
+PostsContext.displayName = 'Posts';
 
 export const PostProvider = ({ children }) => {
     const [title, setTitle] = useState('');
@@ -33,23 +33,11 @@ export const PostProvider = ({ children }) => {
         }
     }
 
-    async function createOrUpdateLike(postId, value){
-        const token = jwtdecode(sessionStorage.getItem("token"));
+    async function createOrUpdateLike(postId){
+        const token = jwtdecode(sessionStorage.getItem("token")).id;
  
-        const like = {
-            value: value,
-            userId: token.id,
-            postId: postId
-        }
-
-        const res2 = await axios.post('http://127.0.0.1:8080/api/like/', {
-            like
-        });
-    
-        if(res2.data)
-        {
-            navigator("/");
-        }
+        const res = await axios.patch('http://127.0.0.1:8080/api/post/likes/'+postId, {token});
+        console.log(res);
     }
 
     async function listPosts(){

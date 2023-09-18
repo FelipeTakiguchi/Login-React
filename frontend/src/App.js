@@ -15,26 +15,26 @@ import { PostProvider } from './context/PostsContext';
 function App() {
   return (
     <>
-      <PostProvider>
-        <NavBar />
-        <Routes>
-          <Route path='/' element={
-            <ProtectedRoute
-              errorPage={<AccessDenied />}
-              targetPage={<HomePage />}
-            />
-          } />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/feed' element={
-            <ProtectedRoute
-              errorPage={<AccessDenied />}
-              targetPage={<FeedPage />}
-            />} />
-          <Route path='/createPost' element={<CreatePost />} />
-          <Route path='/*' element={<UnknownPage />} />
-        </Routes>
-      </PostProvider>
+        <PostProvider>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={
+              <ProtectedRoute
+                errorPage={<AccessDenied />}
+                targetPage={<HomePage />}
+              />
+            } />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route path='/feed' element={
+              <ProtectedRoute
+                errorPage={<AccessDenied />}
+                targetPage={<FeedPage />}
+              />} />
+            <Route path='/createPost' element={<CreatePost />} />
+            <Route path='/*' element={<UnknownPage />} />
+          </Routes>
+        </PostProvider>
     </>
   );
 }

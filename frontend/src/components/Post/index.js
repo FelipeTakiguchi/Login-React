@@ -8,13 +8,19 @@ import { PostsContext } from "../../context/PostsContext";
 
 export default function Post(props) {
     const { createOrUpdateLike } = useContext(PostsContext);
+    
+    function updateLike(){
+        createOrUpdateLike(props.like);
+        props.like = !props.like;
+    }
+
     return (
         <>
             <Card>
                 <Title>{props.title}</Title>
                 <Description>{props.content}</Description>
                 <Separator>
-                    <CenterComponent onClick={() => {createOrUpdateLike(props.key)}}>
+                    <CenterComponent style={ props.like ? {color: "green"} : {} } onClick={() => updateLike}>
                         <Counter></Counter>
                         <FontAwesomeIcon icon={icon({ name: 'thumbs-up' })} />
                     </CenterComponent>
