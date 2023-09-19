@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 export const SpacedForm = styled(Form)`
     gap: .7rem;
-    min-width: 30%;
-    max-width: 60%;
+    min-width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,23 +11,17 @@ export const SpacedForm = styled(Form)`
     padding: .6rem 2rem;
 `;
 
-export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10rem;
-`;
-
-export const InputText = styled(FormControl)`
-    max-width: 100%;
-`;
-
-export const FontSize = styled.div`
-    font-size: .7rem;
-    text-align: center;
+export const TextArea = styled.textarea`
+    width: 100%;
+    padding: 1rem;
+    border-radius: .3rem;
 `;
 
 export const SubmitButton = styled(Button)`
     font-size: 1.2rem;
+`;
+
+export const SmallText = styled.span`
+    user-select: none;
+    font-weight: 100;
 `;

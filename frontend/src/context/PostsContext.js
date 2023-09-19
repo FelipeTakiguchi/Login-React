@@ -35,9 +35,12 @@ export const PostProvider = ({ children }) => {
 
     async function createOrUpdateLike(postId){
         const token = jwtdecode(sessionStorage.getItem("token")).id;
- 
         const res = await axios.patch('http://127.0.0.1:8080/api/post/likes/'+postId, {token});
-        console.log(res);
+    }
+
+    async function createComment(postId, content){
+        const token = jwtdecode(sessionStorage.getItem("token")).id;
+        const res = await axios.post('http://127.0.0.1:8080/api/comment/', {postId, token, content});
     }
 
     async function listPosts(){
@@ -52,7 +55,8 @@ export const PostProvider = ({ children }) => {
                 setTitle, setContent,
                 createPost,
                 listPosts,
-                createOrUpdateLike
+                createOrUpdateLike,
+                createComment
             }}
         >
             {children}

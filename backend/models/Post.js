@@ -4,7 +4,8 @@ const Post = mongoose.model('Post', {
     title: String,
     content: String,
     owner: String,
-    likes: Array
+    likes: Array,
+    comments: Array
 })
  
 module.exports = Post;

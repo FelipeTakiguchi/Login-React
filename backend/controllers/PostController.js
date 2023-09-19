@@ -70,8 +70,6 @@ class PostController {
         const { token } = req.body;
         const post = await Post.findById(id);
 
-        console.log(post.likes)
-
         try {
             var flag = true;
 

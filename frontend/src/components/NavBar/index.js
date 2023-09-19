@@ -11,8 +11,9 @@ export default function NavBar() {
     const [token, setToken] = useState("");
 
     useEffect(() => {
-        setToken(sessionStorage.getItem("token"));
-    }, [sessionStorage.getItem("token")]);
+        const storedToken = sessionStorage.getItem("token");
+        setToken(storedToken);
+    }, []);
 
     const logOff = () => {
         sessionStorage.removeItem("token");

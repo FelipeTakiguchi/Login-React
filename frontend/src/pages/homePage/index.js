@@ -20,10 +20,13 @@ export default function HomePage() {
     return (
         <>
             <S.Content>
+                <S.HorizontalAlign>
+                    <h1>Your Feed</h1>
+                </S.HorizontalAlign>
                 {
                     posts.length > 0 && posts.map((post, index) => {
                         var flag = true;
-                        
+
                         post.likes.map((like) => {
                             if (like === jwtDecode(sessionStorage.getItem("token")).id) {
                                 flag = false;
@@ -32,9 +35,9 @@ export default function HomePage() {
                         })
 
                         if (flag) {
-                            return <Post key={index} id={post._id} title={post.title} content={post.content} like={false} user={post.owner} />
+                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={false} user={post.owner} />
                         } else {
-                            return <Post key={index} id={post._id} title={post.title} content={post.content} like={true} user={post.owner} />
+                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={true} user={post.owner} />
                         }
                     })
                 }
