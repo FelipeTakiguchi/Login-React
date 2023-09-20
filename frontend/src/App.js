@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/homePage';
-import NavBar from './components/NavBar';
 import LoginPage from './pages/loginPage';
 import RegisterPage from './pages/registerPage';
 import FeedPage from './pages/feedPage';
@@ -16,7 +15,6 @@ function App() {
   return (
     <>
         <PostProvider>
-          <NavBar />
           <Routes>
             <Route path='/' element={
               <ProtectedRoute

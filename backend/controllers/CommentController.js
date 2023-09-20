@@ -1,4 +1,4 @@
-const Comment = require('../models/Comment');
+const {Comment} = require('../models/Comment');
 const Post = require('../models/Post');
 
 class CommentController {
@@ -8,36 +8,37 @@ class CommentController {
         if (!content || !owner)
             return res.status(400).send({ message: "Dados inválidos" })
 
-        const comment = {
-            content: content,
-            owner: owner
-        }
-
-        const c = await Comment.create(comment);
-
         // Updating on Post
         const post = await Post.findById(postId);
 
         const newComment = {
-            id: c._id,
-            time: new Date().getTime()
+            time: new Date().getTime(),
+            content: content,
+            owner: owner
         }
 
         try {
             post.comments.push(newComment);
-            await Post.findByIdAndUpdate(postId, { comments: post.comments });
+            post.save();
         } catch (error) {
             return res.status(500).send({ error: error });
         }
 
         return res.status(201)
-            .send({ message: "Comment inserido com sucesso", body: c });
+            .send({ message: "Comment inserido com sucesso", body: post });
     }
 
     static async getAll(req, res) {
+        const {comments} = req.body;
+        const commentList = [];
+
         try {
-            const comment = await Comment.find();
-            return res.status(200).send({ data: comment });
+            for (let i = 0; i < comments.length; i++) {
+                const comment = await Comment.findOne({_id: comments[i].id});
+                commentList.push(comment);
+            }
+
+            return res.status(200).send({ data: commentList });
         } catch (error) {
             return res.status(500).send({ error: error });
         }

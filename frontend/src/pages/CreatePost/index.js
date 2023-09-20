@@ -3,6 +3,7 @@ import * as S from "./styled";
 import { useContext, useState } from 'react';
 import React  from 'react';
 import { PostsContext } from '../../context/PostsContext';
+import NavBar from '../../components/NavBar';
 
 export default function CreatePost() {
     const [title, setTitle] = useState('');
@@ -11,6 +12,7 @@ export default function CreatePost() {
 
     return (
         <>
+            <NavBar />
             <section>
                 <Container>
                     <S.SpacedForm>

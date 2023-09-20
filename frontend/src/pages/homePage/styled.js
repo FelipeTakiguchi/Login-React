@@ -17,3 +17,7 @@ export const HorizontalAlign = styled.div`
     display: flex;
     justify-content: center;
 `;
+
+export const Pad = styled.div`
+    padding: 1rem;
+`;

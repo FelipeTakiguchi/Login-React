@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const Card = styled.div`
-    min-width: 60%;
-    max-width: 60%;
+    min-width: 85%;
+    max-width: 85%;
     min-height: 10rem;
     background-color: aliceblue;
     padding: 1.5rem;
@@ -12,6 +12,7 @@ export const Card = styled.div`
     animation: fadeInAnimation ease .4s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    font-size: 1rem;
     @keyframes fadeInAnimation {
         0% {
             opacity: 0;
@@ -44,8 +45,8 @@ export const Title = styled.h1`
     color: #fff;
     margin: 0;
     margin-top: 1.5rem;
-    min-width: 60%;
-    max-width: 60%;
+    min-width: 85%;
+    max-width: 85%;
     text-align: center;
     padding: .3rem;
     border-radius: 1rem 1rem 0 0;
@@ -53,7 +54,6 @@ export const Title = styled.h1`
 `;
 
 export const Description = styled.p`
-    font-size: 1rem;
     padding: .5rem;
     text-indent: 1rem;
     margin-bottom: 3rem;
@@ -91,4 +91,13 @@ export const FlipIcon = styled(FontAwesomeIcon)`
 export const HorizontalAlign = styled.div`
     display: flex;
     justify-content: center;
+`;
+
+export const ListAlign = styled.div`
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 40%;
+    max-width: 100%;
+    word-wrap: break-word;
 `;

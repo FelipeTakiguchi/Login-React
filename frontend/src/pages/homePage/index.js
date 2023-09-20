@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Post from '../../components/Post';
 import { PostsContext } from '../../context/PostsContext';
 import jwtDecode from "jwt-decode";
+import NavBar from "../../components/NavBar";
 
 export default function HomePage() {
     const [posts, setPosts] = useState([]);
@@ -19,6 +20,8 @@ export default function HomePage() {
 
     return (
         <>
+            <NavBar />
+            <S.Pad>
             <S.Content>
                 <S.HorizontalAlign>
                     <h1>Your Feed</h1>
@@ -35,13 +38,15 @@ export default function HomePage() {
                         })
 
                         if (flag) {
-                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={false} user={post.owner} />
+                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={false} user={post.owner} comments={post.comments} />
                         } else {
-                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={true} user={post.owner} />
+                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={true} user={post.owner} comments={post.comments} />
                         }
                     })
                 }
             </S.Content>
+
+            </S.Pad>
         </>
     )
 }

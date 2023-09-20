@@ -4,6 +4,7 @@ import CryptoJS from 'crypto-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import React  from 'react';
+import jwtDecode from "jwt-decode";
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -22,10 +23,10 @@ export default function LoginPage() {
             json: encryptedJson,
         });
     
-        console.log(res.data);
         if(res.data.token)
         {
             sessionStorage.setItem("token", res.data.token);
+            sessionStorage.setItem("username", jwtDecode(res.data.token).name);
             navigator("/");
         }
     }, [email, password]);

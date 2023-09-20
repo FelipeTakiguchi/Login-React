@@ -1,4 +1,3 @@
-import { Container } from 'react-bootstrap';
 import * as S from "./styled";
 import { useCallback, useState } from 'react';
 import axios from 'axios';
@@ -34,20 +33,20 @@ export default function RegisterPage() {
     return (
         <>
             <section>
-                <Container>
+                <S.Container>
                     <S.SpacedForm>
                         <h2>SIGN UP</h2>
                         <S.InputText type="text" placeholder='Email' onChange={(e) => setEmail(e.target.value)}></S.InputText>
                         <S.InputText type="text" placeholder='Name' onChange={(e) => setName(e.target.value)}></S.InputText>
                         <S.InputText type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)}></S.InputText>
                         {/* <S.InputText type="text" placeholder='ConfirmPassword' onChange={(e) => setConfirmPassword(e.target.value)}></S.InputText> */}
-                        <div>
+                        <S.FontSize>
                             <span>Already have an account? </span>
                             <a href='/login'>LogIn</a>
-                        </div>
+                        </S.FontSize>
                         <S.SubmitButton onClick={handlePost} to="/login">Create</S.SubmitButton>
                     </S.SpacedForm>
-                </Container>
+                </S.Container>
             </section>
         </>
     )

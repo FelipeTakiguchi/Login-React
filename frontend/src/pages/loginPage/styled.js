@@ -25,7 +25,7 @@ export const InputText = styled(FormControl)`
 `;
 
 export const FontSize = styled.div`
-    font-size: .7rem;
+    font-size: .8rem;
     text-align: center;
 `;
 
