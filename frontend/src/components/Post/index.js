@@ -8,7 +8,7 @@ import PostComment from "../PostComment";
 import Comment from "../Comment";
 
 export default function Post(props) {
-    const { createOrUpdateLike, listComments } = useContext(PostsContext);
+    const { createOrUpdateLike } = useContext(PostsContext);
     const [like, setLike] = useState(false);
     const [totalLikes, setTotalLikes] = useState(false);
     const [iconRotation, setIconRotation] = useState(0);

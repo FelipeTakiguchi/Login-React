@@ -1,22 +1,44 @@
 import * as S from "./styled";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import Post from '../../components/Post';
 import { PostsContext } from '../../context/PostsContext';
 import jwtDecode from "jwt-decode";
 import NavBar from "../../components/NavBar";
 
 export default function HomePage() {
-    const [posts, setPosts] = useState([]);
-    const { listPosts } = useContext(PostsContext);
+    const { listPosts, allPosts } = useContext(PostsContext);
 
     async function randomGet() {
-        const res = await listPosts();
-        setPosts(res);
+        await listPosts();
     }
 
     useEffect(() => {
         randomGet();
     }, []);
+
+    const render = useCallback(renderPosts(), [allPosts]);
+
+    function renderPosts() {
+        return(
+            allPosts.length > 0 && allPosts.map((post, index) => {
+                var flag = true;
+
+                post.likes.map((like) => {
+                    if (like === jwtDecode(sessionStorage.getItem("token")).id) {
+                        flag = false;
+                    }
+                    return null;
+                })
+
+                if (flag) {
+                    return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={false} user={post.owner} comments={post.comments} />
+                } else {
+                    console.log(post.comments);
+                    return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={true} user={post.owner} comments={post.comments} />
+                }
+            })
+        )
+    }
 
     return (
         <>
@@ -27,22 +49,7 @@ export default function HomePage() {
                     <h1>Your Feed</h1>
                 </S.HorizontalAlign>
                 {
-                    posts.length > 0 && posts.map((post, index) => {
-                        var flag = true;
-
-                        post.likes.map((like) => {
-                            if (like === jwtDecode(sessionStorage.getItem("token")).id) {
-                                flag = false;
-                            }
-                            return null;
-                        })
-
-                        if (flag) {
-                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={false} user={post.owner} comments={post.comments} />
-                        } else {
-                            return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={true} user={post.owner} comments={post.comments} />
-                        }
-                    })
+                    render
                 }
             </S.Content>
 
