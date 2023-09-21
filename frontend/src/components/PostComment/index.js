@@ -5,13 +5,11 @@ import { PostsContext } from '../../context/PostsContext';
 
 export default function PostComment(props) {
     const [content, setContent] = useState('');
-    const [buttonClicked, setButtonClicked] = useState(false);
     const { createComment } = useContext(PostsContext);
 
     function handleButtonClick() {
         createComment(props.id, content);
         setContent('');
-        setButtonClicked(true);
     }
 
     return ( 

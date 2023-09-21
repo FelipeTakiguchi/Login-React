@@ -33,7 +33,6 @@ export default function HomePage() {
                 if (flag) {
                     return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={false} user={post.owner} comments={post.comments} />
                 } else {
-                    console.log(post.comments);
                     return <Post key={index} id={post._id} title={post.title} likes={post.likes.length} content={post.content} like={true} user={post.owner} comments={post.comments} />
                 }
             })

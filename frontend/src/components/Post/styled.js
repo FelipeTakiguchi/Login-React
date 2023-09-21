@@ -29,7 +29,6 @@ export const CenterComponent = styled.div`
     gap: .5rem;
     padding: .6rem;
     background-color: #DAE0F2;
-    width: 3.5rem;
     font-size: 1rem;
     border-radius: 1rem;
     &:hover{

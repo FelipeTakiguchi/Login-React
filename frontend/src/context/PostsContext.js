@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwtdecode from 'jwt-decode';
 import axios from 'axios';
@@ -36,6 +36,13 @@ export const PostProvider = ({ children }) => {
         await axios.patch('http://127.0.0.1:8080/api/post/likes/' + postId, { token });
     }
 
+    async function createLikeComment(postId, commentId) {
+        const userId = jwtdecode(sessionStorage.getItem("token")).id;
+
+        const res = await axios.post('http://127.0.0.1:8080/api/comment/updateLikes/', { userId, postId, commentId });
+        console.log(res.data.body)
+    }
+    
     async function createComment(postId, content) {
         const owner = jwtdecode(sessionStorage.getItem("token")).name;
         const res = await axios.post('http://127.0.0.1:8080/api/comment/', { postId, owner, content });
@@ -76,6 +83,7 @@ export const PostProvider = ({ children }) => {
                 createPost,
                 listPosts,
                 createOrUpdateLike,
+                createLikeComment,
                 createComment,
                 listComments
             }}

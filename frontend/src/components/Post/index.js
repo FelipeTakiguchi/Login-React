@@ -13,7 +13,6 @@ export default function Post(props) {
     const [totalLikes, setTotalLikes] = useState(false);
     const [iconRotation, setIconRotation] = useState(0);
     const [showComments, setShowComments] = useState(false);
-    const [comments, setComments] = useState([]);
     
     async function flipIcon() {
         setIconRotation(iconRotation + 180);
@@ -23,7 +22,6 @@ export default function Post(props) {
     useEffect(() => {
         setLike(props.like);
         setTotalLikes(props.likes);
-        setComments(props.comments);
     }, []);
 
     function updateLike() {
@@ -63,8 +61,8 @@ export default function Post(props) {
                         showComments && <h4>Comments</h4>
                     }
                     {
-                        showComments && comments.length > 0 && comments.map((comment, index) => {
-                            return <Comment key={index} owner={comment.owner} content={comment.content}></Comment>
+                        showComments && props.comments.length > 0 && props.comments.map((comment, index) => {
+                            return <Comment key={index} id={comment.id} postId={props.id} owner={comment.owner} content={comment.content} likes={comment.likes}></Comment>
                         })
                     }
                 </ListAlign>
