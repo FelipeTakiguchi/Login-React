@@ -10,12 +10,19 @@ class AuthController{
 
         const bytes  = CryptoJS.AES.decrypt(json, 'senhaultrasecreta123');
         var originalText = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        
-        console.log(originalText);
 
         if(!originalText.email || !originalText.name || !originalText.password) 
             return res.status(400)
                 .send({ message: "Name or email or password not provider" })
+
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const validate = regex.test(originalText.email);
+
+        if(!validate)
+            return res.status(400).send({message: "Invalid email"});
+
+        if(originalText.name.length < 3 || originalText.name.length > 15)
+            return res.status(400).send({message: "Name must have between 3 and 15 letters"});
 
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(originalText.password, salt);

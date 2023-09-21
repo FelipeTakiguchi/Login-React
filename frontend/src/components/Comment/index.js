@@ -4,6 +4,7 @@ import Counter from "../Counter";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PostsContext } from '../../context/PostsContext';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import jwtdecode from 'jwt-decode';
 
 export default function Comment(props) {
     const { createOrUpdateLike, createLikeComment } = useContext(PostsContext);
@@ -11,7 +12,13 @@ export default function Comment(props) {
     const [totalLikes, setTotalLikes] = useState(false);
 
     useEffect(() => { 
+        const user = jwtdecode(sessionStorage.getItem("token")).id;
         setTotalLikes(props.likes.length);
+        props.likes.map(like => {
+            if(like == user){
+                setLike(true);
+            }
+        })
     }, []);
 
     function updateLike() {

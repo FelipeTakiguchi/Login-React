@@ -1,0 +1,62 @@
+{
+    "titulo": {
+      "pt": "Bem-Vindo ao Nosso Site",
+      "en": "Welcome to Our Website"
+    },
+    "inicio": {
+      "pt": "Página Inicial",
+      "en": "Home"
+    },
+    "sobre": {
+      "pt": "Sobre Nós",
+      "en": "About Us"
+    },
+    "contato": {
+      "pt": "Contato",
+      "en": "Contact"
+    },
+    "descricao": {
+      "pt": "Somos uma empresa dedicada a fornecer soluções excepcionais para nossos clientes.",
+      "en": "We are a company dedicated to providing exceptional solutions for our clients."
+    },
+    "saibaMais": {
+      "pt": "Saiba Mais",
+      "en": "Learn More"
+    },
+    "equipe": {
+      "pt": "Nossa Equipe",
+      "en": "Our Team"
+    },
+    "missao": {
+      "pt": "Nossa Missão",
+      "en": "Our Mission"
+    },
+    "visao": {
+      "pt": "Nossa Visão",
+      "en": "Our Vision"
+    },
+    "valores": {
+      "pt": "Nossos Valores",
+      "en": "Our Values"
+    },
+    "endereco": {
+      "pt": "Endereço",
+      "en": "Address"
+    },
+    "telefone": {
+      "pt": "Telefone",
+      "en": "Phone"
+    },
+    "email": {
+      "pt": "Email",
+      "en": "Email"
+    },
+    "enviarMensagem": {
+      "pt": "Enviar Mensagem",
+      "en": "Send Message"
+    },
+    "direitosAutorais": {
+      "pt": "© 2023 Todos os direitos reservados.",
+      "en": "© 2023 All rights reserved."
+    }
+  }

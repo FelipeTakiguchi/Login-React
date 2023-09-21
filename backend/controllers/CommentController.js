@@ -12,7 +12,7 @@ class CommentController {
 
         var newId = 0;
 
-        if(post.comments.length > 0){
+        if (post.comments.length > 0) {
             newId = post.comments.length;
         }
 
@@ -32,39 +32,38 @@ class CommentController {
             return res.status(500).send({ error: error });
         }
     }
-
     static async updateLike(req, res) {
-        const { commentId, postId, userId } = req.body
-        
-        if (commentId == undefined|| !postId || !userId)
+        const { commentId, postId, userId } = req.body;
+
+        if (commentId == undefined || !postId || !userId)
             return res.status(400).send({ message: "No ID Provided" })
 
-        // Updating on Post
-        const post = await Post.findById(postId);
-
         try {
-            const likes = post.comments[commentId].likes;
-            var flag = true;
+            const post = await Post.findById(postId);
 
-            for (let i = 0; i < likes.length; i++) {
-                if(likes[i] == userId)
-                {
-                    flag = false;
-                }
+            if (!post) {
+                return res.status(404).send({ message: "Post not found" });
             }
-            
-            if(flag){
-                var newLike = post.comments[commentId].likes;
-                newLike.push(userId);
-                console.log(newLike);
-                post.comments[commentId].likes = ['650c26d23a4391887b036571'];
-                console.log(post.comments[commentId].likes);
+
+            const comment = post.comments.find(comment => comment.id === commentId);
+
+            if (!comment) {
+                return res.status(404).send({ message: "Comment not found" });
             }
-            else{
-                post.comments[commentId].likes.remove(userId);
+
+            const likes = comment.likes;
+
+            if (likes.includes(userId)) {
+                const index = likes.indexOf(userId);
+                likes.splice(index, 1);
+            } else {
+                likes.push(userId);
             }
+
+            post.markModified('comments');
 
             await post.save();
+
             return res.status(201).send({ message: "Like no comment atualizado com sucesso", body: post });
         } catch (error) {
             return res.status(500).send({ error: error });
